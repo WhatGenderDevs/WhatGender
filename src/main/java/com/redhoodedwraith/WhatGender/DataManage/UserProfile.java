@@ -4,10 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -16,8 +13,6 @@ public class UserProfile extends User {
 
     @Id
     public long id;
-    @Email
-    @NotBlank
     private String email;
     private String fullName;
     private String nameToDisplay;

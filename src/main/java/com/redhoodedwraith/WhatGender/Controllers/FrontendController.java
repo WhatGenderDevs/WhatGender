@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
-
 @Controller
 public class FrontendController {
 
@@ -38,24 +35,6 @@ public class FrontendController {
         model.addAttribute("user", profile);
 
         return "signup";
-    }
-
-    @PostMapping("/signup")
-    public ModelAndView signUpUser(
-            @ModelAttribute("user") @Valid UserProfileDTO userDto,
-            HttpServletRequest request,
-            Errors errors) {
-
-        try {
-            ProfileService profileService = new ProfileService();
-            UserProfile registered = profileService.registerNewProfile(userDto);
-        } catch (UserAlreadyExistException uaeEx) {
-            ModelAndView mav = new ModelAndView("signup");
-            mav.addObject("message", "An account for that username/email already exists.");
-            return mav;
-        }
-
-        return new ModelAndView("update_success", "user", userDto);
     }
 
 }
